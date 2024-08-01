@@ -1,0 +1,41 @@
+.valign-wrapper {
+    background-image: url('https://oberoiedutrust.org/wp-content/uploads/2021/12/Banner-LPU-Distance-Education.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 800px;
+    }
+  .card-panel{
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(6px);
+      border-radius: 10px; 
+  }
+  .btn-large{
+  border-radius: 30px;
+  width: 50%;
+  font-size: larger;
+  font-style: italic;
+  }
+  @media (max-width: 600px) {
+      .btn-large {
+        width: 80%;
+        font-size: medium;
+      }
+    
+      .container {
+        padding: 0 20px;
+      }
+    
+      .card-panel {
+        padding: 15px;
+      }
+    }
