@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from './assets/logo.png';
 import signup from "./api"; // Import the signup function from api.js
+import { json } from "react-router-dom";
 
 function Signup() {
     const [name, setName] = useState('');
@@ -23,9 +24,9 @@ function Signup() {
         try {
             const response = await signup(data);
             console.log('Signup success:', response);
+            alert(JSON.stringify(response));
         } catch (error) {
-            console.log('Signup failed:', error);
-            alert(error)
+            alert("error came"+error)
         }
     };
 

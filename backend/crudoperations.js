@@ -3,8 +3,7 @@ const User=require('./schema.js');
 async function Signup(req, res){
     try {
 
-    const {data}=req.body;
-    const {name,registrationnumber,phonenumber,password,idcardimg} = data;
+    const {name,registrationnumber,phonenumber,password,idcardimg} = req.body;
 
     const user = new User({name,registrationnumber,phonenumber,password,idcardimg});
  
