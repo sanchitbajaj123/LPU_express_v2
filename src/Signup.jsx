@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from './assets/logo.png';
 import signup from "./api"; // Import the signup function from api.js
-
+import { ToastContainer } from 'react-toastify';
 function Signup() {
     const [name, setName] = useState('');
     const [registrationnumber, setRegistrationnumber] = useState('');
@@ -89,6 +89,7 @@ function Signup() {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 }

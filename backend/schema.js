@@ -9,7 +9,6 @@ name:{
 registrationnumber:{
     type:String,
     required:true,
-    unique:true,
 },
 phonenumber:{
     type:String,
@@ -26,7 +25,12 @@ idcardimg:{
 }
 },{timestamps:true})
 userSchema.pre('save', async function(next) {
+
     if (this.isNew) {
+        const existingUser = await this.constructor.findOne({ registrationnumber: this.registrationnumber });
+        if (existingUser) {
+            return next(new Error('Registration number already exists.'));
+        }
         try {
             this.password = await encryptPassword(this.password);
             next();
