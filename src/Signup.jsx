@@ -23,9 +23,9 @@ function Signup() {
         try {
             const response = await signup(data);
             console.log('Signup success:', response);
+            alert(JSON.stringify(response));
         } catch (error) {
-            console.log('Signup failed:', error);
-            alert(error)
+            alert("error came"+error)
         }
     };
 

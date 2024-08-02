@@ -13,7 +13,7 @@ async function Signup(req, res){
   
     }
     catch(err) {
-        console.error(err);
+    console.error(err);
         
     res.status(400).json({message: 'User already exists'})
         
