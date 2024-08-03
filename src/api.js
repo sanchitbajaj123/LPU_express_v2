@@ -19,4 +19,22 @@ async function signup(data){
         }
     }
 }
-export default signup;
+
+async function login(data){
+    try{
+        const response=await axios.post(url+"/login",data);
+        console.log('API data:', response.data);
+        localStorage.setItem('regno', response.data.registrationnumber);
+        return response.data;
+    }catch(error){
+        if(error.response.status===401){
+            toast.error('Incorrect password')
+        }
+        else if(error.response.status===400){
+            toast.error('Invalid registration number')
+        }
+    }
+}
+export { 
+signup, login
+};

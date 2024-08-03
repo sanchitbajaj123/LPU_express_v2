@@ -1,5 +1,5 @@
 const User=require('./schema.js');
-
+const {checkPassword} = require('./passencrypt.js');
 async function Signup(req, res){
     try {
     
@@ -19,5 +19,26 @@ async function Signup(req, res){
         
     }
 }
+async function Login(req, res) {
+    try {
+        const { registrationnumber, password } = req.body;
+        console.log(registrationnumber);
+        console.log(password);
+        const user = await User.findOne({ registrationnumber: registrationnumber});
+        const isMatch = await checkPassword(password, user.password);
 
-module.exports = Signup;
+        if (isMatch) {
+            res.status(200).json(user);
+        } else {
+            res.status(401).json({ message: 'Incorrect password' });
+        }
+
+    }
+    catch(err) {
+        console.error(err);
+        res.status(400).json({ message: 'Invalid credentials' });
+
+    }
+}
+
+module.exports = { Signup, Login };

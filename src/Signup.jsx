@@ -3,7 +3,7 @@ import logo from './assets/logo.png';
 import { ToastContainer, toast } from 'react-toastify';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { storage } from './firebase'; 
-import signup from "./api";
+import {signup} from "./api";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {

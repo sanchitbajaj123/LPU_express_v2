@@ -1,7 +1,7 @@
 const exp=require('express')
 // const router = require('router')
 const cors=require('cors')
-const Signup = require('./crudoperations.js')
+const {Signup,Login} = require('./crudoperations.js')
 const app=exp()
 
 app.use(cors())
@@ -12,6 +12,7 @@ const routes =exp.Router()
 app.use('/', routes)
 
 routes.post('/signup', Signup)
+routes.post('/login', Login)
 
 app.use(exp.json())
 
