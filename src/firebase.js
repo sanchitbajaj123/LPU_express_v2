@@ -4,16 +4,14 @@ import { getStorage } from 'firebase/storage';
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCULLiCPGGoMZfskfIwg7_7E4qNumhzto4",
-    authDomain: "lpu-express.firebaseapp.com",
-    projectId: "lpu-express",
-    storageBucket: "lpu-express.appspot.com",
-    messagingSenderId: "165324988161",
-    appId: "1:165324988161:web:7f7e851a7146a8b6ed4500",
-    measurementId: "G-BLS4JPN5XB"
+    apiKey:process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
   };
-
-
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 console.log(storage)

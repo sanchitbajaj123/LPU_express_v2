@@ -48,20 +48,12 @@ function Signup() {
 
            
             const response = await signup(data);
-            
             console.log('Signup success:', response);
-            toast.dismiss()
-            toast.success('Signup successful!');
             if (response) {
                 alert('Acount created successfully!');
                 navigate('/');
             }
         } catch (error) {
-            toast.dismiss()
-            if(error.response.code===400){
-                toast.error(error.response)
-
-            }
             console.error('Error uploading file:', error);
             toast.error(error)
         }
