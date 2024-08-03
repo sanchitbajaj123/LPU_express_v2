@@ -11,7 +11,7 @@ async function signup(data){
         toast.success('Signup successful! You can now login.')
         return response.data;
     }catch(error){
-        if(error.response.status==400){
+        if(error.response.status===400){
             toast.error('User already exists')
         }
         else{

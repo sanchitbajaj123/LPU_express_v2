@@ -1,32 +1,69 @@
 import React, { useState } from "react";
 import logo from './assets/logo.png';
-import signup from "./api"; // Import the signup function from api.js
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import { ref, uploadString, getDownloadURL } from 'firebase/storage';
+import { storage } from './firebase'; 
+import signup from "./api";
+import { useNavigate } from "react-router-dom";
+
 function Signup() {
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [registrationnumber, setRegistrationnumber] = useState('');
     const [phonenumber, setPhonenumber] = useState('');
     const [password, setPassword] = useState('');
     const [idcardimg, setIdCardPicture] = useState(null);
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setIdCardPicture(reader.result); // This will be a data URL
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        const data = {
-            name,
-            registrationnumber,
-            phonenumber,
-            password,
-            idcardimg
-        };
-        
+
+        if (!idcardimg) {
+            toast.error('Please upload an ID card image.');
+            return;
+        }
+        toast.info(' processing your request...');
         try {
+            const storageRef = ref(storage, `idcard_images/${Date.now()}.png`);
+            const uploadResult = await uploadString(storageRef, idcardimg, 'data_url');
+            const downloadURL = await getDownloadURL(uploadResult.ref);
+
+            const data = {
+                name,
+                registrationnumber,
+                phonenumber,
+                password,
+                idcardimg: downloadURL,
+            };
+
+           
             const response = await signup(data);
+            
             console.log('Signup success:', response);
-            if(response) {
-            alert(JSON.stringify(response));}
+            toast.dismiss()
+            toast.success('Signup successful!');
+            if (response) {
+                alert('Acount created successfully!');
+                navigate('/');
+            }
         } catch (error) {
-            alert("error came"+error)
+            toast.dismiss()
+            if(error.response.code===400){
+                toast.error(error.response)
+
+            }
+            console.error('Error uploading file:', error);
+            toast.error(error)
         }
     };
 
@@ -39,7 +76,14 @@ function Signup() {
                             <h4 className="head" style={{ color: '#ff8a00' }}>
                                 <img src={logo} height="150px" width="300px" alt="Logo" />
                             </h4>
-                            <form id="form" onSubmit={handleSubmit}>
+                            <form id="form" onSubmit={handleSubmit} onKeyDown={
+                                (e) => {
+                                    if (e.key === 'Enter') {
+                                        e.preventDefault();
+                                        handleSubmit(e);
+                                    }
+                                }
+                            }>
                                 <div className="input-field">
                                     <input id="name" type="text" className="validate" required
                                         value={name}
@@ -48,14 +92,14 @@ function Signup() {
                                     <label htmlFor="name">Name</label>
                                 </div>
                                 <div className="input-field">
-                                    <input id="rn" type="text" className="validate" required
+                                    <input id="rn" type="number" className="validate" required
                                         value={registrationnumber}
                                         onChange={(e) => setRegistrationnumber(e.target.value)}
                                     />
                                     <label htmlFor="rn">Registration Number</label>
                                 </div>
                                 <div className="input-field">
-                                    <input id="phone" type="tel" className="validate" required
+                                    <input id="phone" type="number" className="validate" required
                                         value={phonenumber}
                                         onChange={(e) => setPhonenumber(e.target.value)}
                                     />
@@ -72,7 +116,7 @@ function Signup() {
                                     <div className="btn">
                                         <span>Upload ID Card Picture</span>
                                         <input type="file" id="id_card_picture" accept="image/*" required
-                                            onChange={(e)=> setIdCardPicture(e.target.value)}
+                                            onChange={handleFileChange}
                                         />
                                     </div>
                                     <div className="file-path-wrapper">
