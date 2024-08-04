@@ -48,6 +48,7 @@ function Signup() {
 
            
             const response = await signup(data);
+            console.log(response)
             console.log('Signup success:', response);
             if (response) {
                 alert('Acount created successfully!');

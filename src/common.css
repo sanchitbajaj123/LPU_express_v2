@@ -25,6 +25,61 @@
   font-size: larger;
   font-style: italic;
   }
+  .home{
+    display: flex;
+    flex-direction: column;
+  }
+  .card{
+    width: 30%;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(6px);
+    border-radius: 20px; 
+  }
+  .card-image{
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px; 
+    margin: 0;
+  }
+.card-title{
+  font-family: 'Arial',   sans-serif; 
+  font-weight: 700; 
+  font-size: 24px; 
+  color: #333;
+  margin: 0;
+  text-align: center;
+}
+
+.card-action {
+  display: flex;
+  border-radius: 17px;
+  overflow: hidden; /* Ensure rounded corners */
+  border: 1px solid #ddd; /* Optional border */
+  background-color: #8b3a25;
+  opacity: 0.8;
+  width: 30%;
+}
+
+.card-action a {
+  flex: 1; /* Each anchor tag takes up equal space */
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* Text color */
+  padding: 15px; /* Add padding inside anchor tags */
+  margin: 0; /* Remove default margin */
+  border-right: 1px solid #ddd; /* Line between items */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+
+.card-action a:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+  background-color: #4c3640;
+}
+
   @media (max-width: 600px) {
       .btn-large {
         width: 80%;
@@ -37,5 +92,17 @@
     
       .card-panel {
         padding: 15px;
+      }
+      .card{
+        width: 80%;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(6px);
+        border-radius: 20px;
+      }
+      .card-image{
+        height: 200px;
+      }
+      .card-action{
+        width: 80%;
       }
     }

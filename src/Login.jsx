@@ -18,18 +18,17 @@ const LoginForm = () => {
       password
     }
     console.log(data);
-    const response=login(data)
+    const response= await login(data)
     if(response){
-
       console.log(response)
       toast.dismiss()
       toast.success('login succesfully!', {
         onClose: () => navigate('/home')
       });
     }}
-    catch(e){
-      console.log(e);
-      alert(e.message);
+    catch(error){
+      console.log(error);
+      alert(error.message);
     }
 
   }
