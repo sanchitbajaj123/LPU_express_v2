@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { cuslist,parcels } from "./api";
+import { ToastContainer } from 'react-toastify';
 
 function DeliveryService() {
   const [customers, setCustomers] = useState([]);
@@ -66,6 +67,7 @@ function DeliveryService() {
           </div>
         ))}
       </div>
+      <ToastContainer/>
     </div>
   );
 }

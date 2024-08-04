@@ -71,6 +71,30 @@ catch(error){
     alert(error);
 }
 }
+async function deliverylist(){
+    try{
+        const retrievedObject = localStorage.getItem('userData');
+        const user = JSON.parse(retrievedObject);
+        const userregistrationumber=user.registrationnumber;
+        const data={registrationnumber:userregistrationumber}
+        console.log(data);
+        const response=await axios.post(url+"/deliverylist",data);
+        console.log('API data:', response.data);
+        return response.data;
+    }
+    catch(error){
+        console.log(error.response);
+        alert(error);
+    }
+}
+ async function cusdel(regno){
+    const data={
+        registrationnumber:regno
+    }
+    const response = await axios.post(url+'/cusdel',data);
+    console.log('API data:', response.data);
+    toast.success('Thanks for using our platform')
+ }
 export { 
-signup, login,customerRegister,cuslist,parcels
+signup, login,customerRegister,cuslist,parcels,deliverylist,cusdel
 };

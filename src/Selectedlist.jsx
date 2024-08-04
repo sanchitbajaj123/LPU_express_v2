@@ -1,26 +1,41 @@
 import React, { useState, useEffect } from "react";
+import { deliverylist,cusdel } from "./api";
+import { ToastContainer } from 'react-toastify';
 
-
-function DeliveryService() {
+function DeliveryServicelist() {
   const [customers, setCustomers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+const handleSubmit=async(regno)=>{
+        const response=await cusdel(regno)
+        console.log(response);
+}
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const cus = await cuslist();
-        console.log(cus);
-        setCustomers(cus);
+        const data = await deliverylist();
+        
+        
+        const customerArray = Object.values(data);
+        
+        console.log(customerArray);
+        setCustomers(customerArray);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching customer data:", error);
+        setError('Error fetching customer data.');
+        setLoading(false);
       }
     };
 
     fetchCustomers();
-    const intervalId = setInterval(() => {
-        fetchCustomers();
-      }, 1000);
-    return () => clearInterval(intervalId);
   }, []); 
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
+  if (customers.length === 0) return <div>No customers available.</div>;
 
   return (
     <div className='valign-wrapper home'>
@@ -50,13 +65,14 @@ function DeliveryService() {
               <p><strong>Delivery Company:</strong> {customer.deliverycompany}</p>
               <p><strong>Fare:</strong> ${customer.fare}</p>
               <p><strong>Location:</strong> {customer.location}</p>
-              <button>DELIVERED</button>
+              <button onClick={() => handleSubmit(customer.registrationnumber)}>DELIVERED</button>
             </div>
           </div>
         ))}
       </div>
+      <ToastContainer/>
     </div>
   );
 }
 
-export default DeliveryService;
+export default DeliveryServicelist;

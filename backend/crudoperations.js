@@ -104,11 +104,36 @@ async function Slectedlist(req, res) {
     try {
         const { registrationnumber } = req.body;
         const user = await User.findOne({ registrationnumber });
-        res.status(200).json(user.customerselected);
+        const arr=user.customerselected
+        const data={
+
+        }
+        for(let i=0;i<arr.length;i++){
+            const customer = await Customer.findOne({ registrationnumber: arr[i] });
+            data[arr[i]]=customer;
+        }
+        res.status(200).json(data);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 }
-
-module.exports = { Signup, Login,Customeradd,Customerlist,Parcelservice,Slectedlist };
+async function Cusdel(req, res) {
+    try{
+        console.log('Cusdel')
+    const {registrationnumber}=req.body;
+    console.log(registrationnumber)
+    const result = await Customer.deleteOne({ registrationnumber });
+    const updateResult = await User.updateMany(
+        {}, 
+        { $pull: { customerselected: registrationnumber } } // Remove registrationnumber from selectedlist array
+    );
+    console.log("cus",updateResult);
+        res.status(200).json({ message:"delete customer"})
+}
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+module.exports = { Signup, Login,Customeradd,Customerlist,Parcelservice,Slectedlist,Cusdel };

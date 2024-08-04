@@ -4,7 +4,7 @@ import Signup from './Signup';
 import Home from './Home';
 import Customer from './Customer';
 import DeliveryService from './Delivery';
-
+import DeliveryServicelist from './Selectedlist';
 import './common.css'
 function App() {
   return (
@@ -15,10 +15,9 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/customer" element={<Customer />} />
         <Route path="/delivery" element={<DeliveryService />} />
-        
+        <Route path="/selectedparcels" element={<DeliveryServicelist />} />
       </Routes>
     </Router>
-
 
   );
 }
