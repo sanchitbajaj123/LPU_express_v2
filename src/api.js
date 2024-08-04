@@ -36,7 +36,18 @@ async function login(data){
         }
     }
 }
-
+async function customerRegister(data){
+    try{
+        console.log(data);
+        const response=await axios.post(url+"/customeradd",data);
+        console.log('API data:', response.data);
+        toast.success('Parcel added successfully')
+        return response.data;
+    }
+    catch(error){
+        toast.error(error.response.data.message);
+    }
+}
 export { 
-signup, login
+signup, login,customerRegister
 };

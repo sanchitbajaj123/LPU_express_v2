@@ -41,7 +41,7 @@ function Home(){
   </div>            
   <div className="card-action">
       <a className='onel' href="/c">DELIVERY-PERSON</a>
-      <a  className='twol' href="/d">CUSTOMER</a>
+      <a  className='twol' href="/customer">CUSTOMER</a>
     </div>
         </div>
     

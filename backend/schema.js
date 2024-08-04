@@ -41,7 +41,6 @@ userSchema.pre('save', async function(next) {
         next();
     }
 });
-
 userSchema.statics.checkpassandreg=async (registrationnumber,password)=>{
     const user=await this.findOne({registrationnumber});
     if(!user){
@@ -56,6 +55,47 @@ userSchema.statics.checkpassandreg=async (registrationnumber,password)=>{
 
 const User = model("User", userSchema);
 
+const customerSchema = new Schema({
+    name:{
+        type:String,
+        required:true,
+    },
+    registrationnumber:{
+        type:String,
+        required:true,
+    },
+    phonenumber:{
+        type:String,
+        required:true,
+    },
+    idcardimg:{
+        type:String,
+        required:true,
+    },
+    parcelname:{
+        type:String,
+        required:true,
+    },
+    deliverycompany:{
+        type:String,
+        required:true,
+    },
+    fare:{
+        type:String,
+        required:true,
+    },
+    location:{
+        type:String,
+        required:true,
+    },
+    deliverypersonregistration:{
+        type:String,
+        default:null,
+    }
+
+    },{timestamps:true})
+    const Customer = model("Customers", customerSchema);
+
 
 const connectdb=async()=>{
     await mongoose.connect('mongodb://localhost:27017/lpuexpress-v2')
@@ -63,4 +103,4 @@ const connectdb=async()=>{
 }
 connectdb();
 
-module.exports=User;
+module.exports={User,Customer};

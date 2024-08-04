@@ -1,4 +1,4 @@
-const User=require('./schema.js');
+const {User,Customer}=require('./schema.js');
 const {checkPassword} = require('./passencrypt.js');
 async function Signup(req, res){
     try {
@@ -28,7 +28,7 @@ async function Login(req, res) {
         const isMatch = await checkPassword(password, user.password);
 
         if (isMatch) {
-            res.status(200).json(user);
+            res.status(201).json(user);
         } else {
             res.status(401).json({ message: 'Incorrect password' });
         }
@@ -40,5 +40,34 @@ async function Login(req, res) {
 
     }
 }
+async function Customeradd(req, res) {
+    try{
+        const{registrationnumber,parcelname,deliverycompany,fare,location}=req.body;
+        console.log(req.body);
+        const check=await Customer.findOne({registrationnumber:registrationnumber})
+        if(check){
+            res.status(401).json({ message: 'Only one parcel at a time can be treated'});
+        }
+        else{
+        const user = await User.findOne({registrationnumber:registrationnumber})
+        const customer = new Customer({
+            name: user.name,
+            registrationnumber: registrationnumber,
+            phonenumber: user.phonenumber,
+            idcardimg: user.idcardimg,
+            parcelname: parcelname,
+            deliverycompany: deliverycompany,
+            fare: fare,
+            location: location,
+        });
+        await customer.save()
+        res.status(201).json(customer);}
 
-module.exports = { Signup, Login };
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+
+module.exports = { Signup, Login,Customeradd };
