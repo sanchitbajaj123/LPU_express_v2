@@ -21,6 +21,7 @@ async function Signup(req, res){
 }
 async function Login(req, res) {
     try {
+        console.log(1);
         const { registrationnumber, password } = req.body;
         console.log(registrationnumber);
         console.log(password);
@@ -81,12 +82,16 @@ async function Customerlist(req, res) {
 async function Parcelservice(req, res) {
     try{
         console.log(req.body)
-        const {userregistrationnumber,customerregistartionumber}=req.body;
-        const user = await User.findOne({ registrationnumber: userregistrationnumber});
-        const customer = await Customer.findOne({ registrationnumber: customerregistartionumber});
-        user.customerselected.push(customerregistartionumber);
+        const {userregistrationumber,customerregistrationnumber}=req.body;
+        console.log(userregistrationumber)
+        console.log(customerregistrationnumber)
+        const user = await User.findOne({ registrationnumber:userregistrationumber});
+        console.log(user)
+        const customer = await Customer.findOne({ registrationnumber: customerregistrationnumber});
+        console.log(customer)
+        user.customerselected.push(customerregistrationnumber);
         await user.save();
-        customer.deliverypersonregistration=userregistrationnumber;
+        customer.deliverypersonregistration=userregistrationumber;
         await customer.save();
         res.status(201).json(customer);
     }
@@ -95,4 +100,15 @@ async function Parcelservice(req, res) {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 }
-module.exports = { Signup, Login,Customeradd,Customerlist,Parcelservice };
+async function Slectedlist(req, res) {
+    try {
+        const { registrationnumber } = req.body;
+        const user = await User.findOne({ registrationnumber });
+        res.status(200).json(user.customerselected);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+
+module.exports = { Signup, Login,Customeradd,Customerlist,Parcelservice,Slectedlist };

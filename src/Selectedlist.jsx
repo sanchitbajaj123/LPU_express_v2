@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { cuslist,parcels } from "./api";
+
 
 function DeliveryService() {
   const [customers, setCustomers] = useState([]);
 
-  const parcel=async (val)=>{
-    const retrievedObject = localStorage.getItem('userData');
-    const user = JSON.parse(retrievedObject);
-    const userregistrationumber=user.registrationnumber;
-    const customerregistrationnumber=val;
-    const data={
-        userregistrationumber,customerregistrationnumber
-    }
-    const res=await parcels(data);
-    console.log(res);
-  }
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
@@ -47,7 +36,7 @@ function DeliveryService() {
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
         }}
       >
-        <b>Customer List <br /> <a href="/selectedparcels">view selected parcels</a></b>
+        <b>Select parcel list </b>
       </h1>
       <div className="container-list">
         {customers.map((customer) => (
@@ -61,7 +50,7 @@ function DeliveryService() {
               <p><strong>Delivery Company:</strong> {customer.deliverycompany}</p>
               <p><strong>Fare:</strong> ${customer.fare}</p>
               <p><strong>Location:</strong> {customer.location}</p>
-              <button onClick={() => parcel(customer.registrationnumber)}>accept</button>
+              <button>DELIVERED</button>
             </div>
           </div>
         ))}

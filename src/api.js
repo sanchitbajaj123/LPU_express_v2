@@ -59,6 +59,18 @@ async function cuslist(){
         alert(error);
     }
 }
+async function parcels(data){
+try{
+const response = await axios.post(url+"/parcelservice",data);
+    console.log('API data:', response.data);
+    toast.success('Parcel added to delivery list!')
+    return response.data;
+}
+catch(error){
+    console.log(error.response);
+    alert(error);
+}
+}
 export { 
-signup, login,customerRegister,cuslist
+signup, login,customerRegister,cuslist,parcels
 };
