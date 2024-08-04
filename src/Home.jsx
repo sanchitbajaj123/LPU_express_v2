@@ -40,7 +40,7 @@ function Home(){
     </div>
   </div>            
   <div className="card-action">
-      <a className='onel' href="/c">DELIVERY-PERSON</a>
+      <a className='onel' href="/delivery">DELIVERY-PERSON</a>
       <a  className='twol' href="/customer">CUSTOMER</a>
     </div>
         </div>

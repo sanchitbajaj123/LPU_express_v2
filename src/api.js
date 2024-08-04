@@ -48,6 +48,17 @@ async function customerRegister(data){
         toast.error(error.response.data.message);
     }
 }
+async function cuslist(){
+    try{
+        const response=await axios.get(url+"/customerlist");
+        console.log('API data:', response.data);
+        return response.data;
+    }
+    catch(error){
+        console.log(error.response);
+        alert(error);
+    }
+}
 export { 
-signup, login,customerRegister
+signup, login,customerRegister,cuslist
 };

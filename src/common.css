@@ -49,7 +49,6 @@
   margin: 0;
   text-align: center;
 }
-
 .card-action {
   display: flex;
   border-radius: 17px;
@@ -79,7 +78,43 @@
   transform: scale(1.05);
   background-color: #4c3640;
 }
+.container-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll; 
+  margin-top:2% ;
+  width: 100%;
+}
 
+.dc {
+  width: 40%;
+  display: flex;
+}
+
+.dcm, .dcc {
+  flex: 1; /* Makes both items take equal space */
+  width: 100%;
+  object-fit: cover;
+}
+.dc button{
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* Text color */
+  padding: 10px; /* Add padding inside anchor tags */
+  width: 50%;
+  margin: 0; /* Remove default margin */
+  border-right: 1px solid #ddd; /* Line between items */
+  box-sizing: border-box; /* Include padding and border in the width calculation */
+  background-color: #8b3a25;
+}
+.dc button:hover{
+  opacity: 0.9;
+  transform: scale(1.05);
+  background-color: green;
+}
   @media (max-width: 600px) {
       .btn-large {
         width: 80%;
@@ -104,5 +139,12 @@
       }
       .card-action{
         width: 80%;
+      }
+      .dc{
+        width: 90%;
+      }
+      .dcm{
+        width: 50%;
+        height: 100%;
       }
     }

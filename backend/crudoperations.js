@@ -69,5 +69,30 @@ async function Customeradd(req, res) {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 }
-
-module.exports = { Signup, Login,Customeradd };
+async function Customerlist(req, res) {
+    try {
+        const customers = await Customer.find();
+        res.json(customers);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+async function Parcelservice(req, res) {
+    try{
+        console.log(req.body)
+        const {userregistrationnumber,customerregistartionumber}=req.body;
+        const user = await User.findOne({ registrationnumber: userregistrationnumber});
+        const customer = await Customer.findOne({ registrationnumber: customerregistartionumber});
+        user.customerselected.push(customerregistartionumber);
+        await user.save();
+        customer.deliverypersonregistration=userregistrationnumber;
+        await customer.save();
+        res.status(201).json(customer);
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+module.exports = { Signup, Login,Customeradd,Customerlist,Parcelservice };

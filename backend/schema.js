@@ -22,7 +22,12 @@ password:{
 idcardimg:{
     type:String,
     required:true,
+},
+customerselected:{
+    type: [String], 
+    default: [], 
 }
+
 },{timestamps:true})
 userSchema.pre('save', async function(next) {
 
