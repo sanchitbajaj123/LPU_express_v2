@@ -1,7 +1,7 @@
 const exp=require('express')
 // const router = require('router')
 const cors=require('cors')
-const {Signup,Login,Customeradd,Customerlist,Parcelservice,Slectedlist,Cusdel} = require('./crudoperations.js')
+const {Signup,Login,Customeradd,Customerlist,Parcelservice,Slectedlist,Cusdel,Checkdelivery} = require('./crudoperations.js')
 const app=exp()
 
 app.use(cors())
@@ -18,6 +18,7 @@ routes.get('/customerlist', Customerlist)
 routes.post('/parcelservice', Parcelservice)
 routes.post('/deliverylist', Slectedlist)
 routes.post('/cusdel',Cusdel)
+routes.post('/checkdelivery', Checkdelivery)
 app.use(exp.json())
 
 const port=process.env.PORT || 3001

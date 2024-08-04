@@ -95,6 +95,22 @@ async function deliverylist(){
     console.log('API data:', response.data);
     toast.success('Thanks for using our platform')
  }
+ async function checkdelivery(){
+    try{
+        const retrievedObject = localStorage.getItem('userData');
+        const user = JSON.parse(retrievedObject);
+        const userregistrationumber=user.registrationnumber;
+        const data={registrationnumber:userregistrationumber}
+        console.log(data);
+        const response=await axios.post(url+"/checkdelivery",data);
+        console.log('API data:', response.data);
+        return response.data;
+    }
+    catch(error){
+        console.log(error.response);
+        alert(error);
+    }
+ }
 export { 
-signup, login,customerRegister,cuslist,parcels,deliverylist,cusdel
+signup, login,customerRegister,cuslist,parcels,deliverylist,cusdel,checkdelivery
 };

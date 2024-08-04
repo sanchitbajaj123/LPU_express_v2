@@ -136,4 +136,23 @@ async function Cusdel(req, res) {
         res.status(500).json({ message: 'Internal Server Error' });
     }
 }
-module.exports = { Signup, Login,Customeradd,Customerlist,Parcelservice,Slectedlist,Cusdel };
+async function Checkdelivery(req, res){
+    try{
+        console.log('Checkdelivery')
+        const {registrationnumber}=req.body;
+        console.log(registrationnumber)
+        const user = await Customer.findOne({ registrationnumber });
+        console.log(user)
+        if(user.deliverypersonregistration){
+            res.status(200).json(user)
+        }
+        else{
+            res.status(200).json({ message:"No delivery person assigned"})
+        }
+    }
+    catch(err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+}
+module.exports = { Signup, Login,Customeradd,Customerlist,Parcelservice,Slectedlist,Cusdel,Checkdelivery };
