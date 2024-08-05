@@ -72,7 +72,8 @@ async function Customeradd(req, res) {
 }
 async function Customerlist(req, res) {
     try {
-        const customers = await Customer.find();
+        const customers = await Customer.find({ deliverypersonregistration: null });
+
         res.json(customers);
     } catch (err) {
         console.error(err);
@@ -147,7 +148,7 @@ async function Checkdelivery(req, res){
             res.status(200).json(user)
         }
         else{
-            res.status(200).json({ message:"No delivery person assigned"})
+            res.status(400)
         }
     }
     catch(err) {

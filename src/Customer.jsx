@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import logo from './assets/logo.png';
 import { customerRegister } from './api';
 import { ToastContainer} from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 function Customer() {
+  const navigate = useNavigate();
   const [parcelname, setParcelName] = useState('');
   const [deliverycompany, setDeliveryCompany] = useState('');
   const [fare, setFare] = useState('');
@@ -26,7 +28,7 @@ function Customer() {
   }
 
   return (
-    <div className="valign-wrapper" style={{ height: '100vh' }}>
+    <div className="valign-wrapper" style={{ "height": '100vh' ,"overflow":'hidden'}}>
       <div className="container">
         <div className="row">
           <div className="col s12 m8 offset-m2">
@@ -90,6 +92,14 @@ function Customer() {
                   </button>
                 </div>
               </form>
+              
+              <div className="center-align">
+              <button className="btn waves-effect  btn-small" style={{"margin-top": "10px"}} onClick={(e)=>{
+                navigate('/checkstatus')
+              }}>
+                    Check status
+                  </button>
+                  </div>
             </div>
           </div>
         </div>
