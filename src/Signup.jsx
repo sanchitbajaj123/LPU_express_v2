@@ -19,11 +19,31 @@ function Signup() {
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setIdCardPicture(reader.result); // This will be a data URL
+                const img = new Image();
+                img.onload = () => {
+                    // Define the desired width and height
+                    const targetWidth = 277 * 300 / 25.4; // Convert mm to pixels for 300 dpi
+                    const targetHeight = 207 * 300 / 25.4; // Convert mm to pixels for 300 dpi
+    
+                    // Create a canvas to resize the image
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = targetWidth;
+                    canvas.height = targetHeight;
+    
+                    // Draw the image onto the canvas
+                    ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+    
+                    // Get the resized image as a data URL
+                    const resizedImage = canvas.toDataURL('image/png');
+                    setIdCardPicture(resizedImage); // This will be a data URL
+                };
+                img.src = reader.result;
             };
             reader.readAsDataURL(file);
         }
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();

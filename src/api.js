@@ -6,6 +6,7 @@ const url="http://localhost:3001"
 
 async function signup(data){
     try{
+        console.log(data);
         const response=await axios.post(url+"/signup",data);
         console.log('API data:', response.data);
         toast.success('Signup successful! You can now login.')
@@ -97,11 +98,17 @@ async function deliverylist(){
  }
  async function checkdelivery(){
     try{
+        console.log('Checking delivery')
         const retrievedObject = localStorage.getItem('userData');
+        console.log(1)
         const user = JSON.parse(retrievedObject);
+        console.log(2)
         const userregistrationumber=user.registrationnumber;
+        console.log(3)
         const data={registrationnumber:userregistrationumber}
+        console.log(4)
         const response=await axios.post(url+"/checkdelivery",data);
+        console.log(5)
         console.log('API data:', response.data);
         return response.data;
     }

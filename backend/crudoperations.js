@@ -142,14 +142,16 @@ async function Checkdelivery(req, res){
         console.log('Checkdelivery')
         const {registrationnumber}=req.body;
         console.log(registrationnumber)
-        const user = await Customer.findOne({ registrationnumber });
+        const use = await Customer.findOne({ registrationnumber });
+        console.log(use)
+        console.log(use.deliverypersonregistration)
+        const user = await User.findOne({registrationnumber:use.deliverypersonregistration});
         console.log(user)
-        if(user.deliverypersonregistration){
+        
             res.status(200).json(user)
-        }
-        else{
-            res.status(400)
-        }
+
+           
+        
     }
     catch(err) {
         console.error(err);

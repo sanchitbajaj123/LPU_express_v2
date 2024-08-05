@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const {Schema,model}= require('mongoose');
 const { checkPassword, encryptPassword } = require("./passencrypt");
+require('dotenv').config();
+const mongoUrl = process.env.MONGODB_URL;
 const userSchema = new Schema({
 name:{
     type:String,
@@ -103,7 +105,7 @@ const customerSchema = new Schema({
 
 
 const connectdb=async()=>{
-    await mongoose.connect('mongodb://localhost:27017/lpuexpress-v2')
+    await mongoose.connect(mongoUrl)
     console.log('MongoDB Connected...');
 }
 connectdb();
