@@ -51,7 +51,7 @@ const handleSubmit=async(regno)=>{
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
         }}
       >
-        <b>Select parcel list </b>
+        <b>Selected parcel list </b>
       </h1>
       <div className="container-list">
         {customers.map((customer) => (

@@ -11,18 +11,19 @@ function Checkstatus() {
     const fetchDeliveryDetails = async () => {
       try {
         const response = await checkdelivery();
+        console.log('API:', response.data);
         if (response) {
+          console.log(response)
           setDeliveryDetails({
             name: response.name,
             registrationNumber: response.registrationnumber,
             phoneNumber: response.phonenumber,
             image: response.idcardimg
           });
+          setLoading(false);
         }
       } catch (error) {
         console.error("Error fetching delivery details:", error);
-      } finally {
-        setLoading(false);
       }
     };
 

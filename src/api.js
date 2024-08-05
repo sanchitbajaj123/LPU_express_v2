@@ -2,7 +2,7 @@ import axios from "axios"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const url="http://localhost:3001"
+const url="https://lpu-express-backend.onrender.com"
 
 async function signup(data){
     try{
@@ -109,8 +109,10 @@ async function deliverylist(){
         console.log(4)
         const response=await axios.post(url+"/checkdelivery",data);
         console.log(5)
-        console.log('API data:', response.data);
-        return response.data;
+        if(response.data){
+            console.log(response)
+            return response.data
+        }
     }
     catch(error){
         console.log(error.response);
