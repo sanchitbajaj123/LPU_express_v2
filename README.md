@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# LPU Express
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+LPU Express is a parcel delivery system designed specifically for the students of LPU University. This system facilitates the pickup and delivery of parcels by day scholars for hostlers, with a fare charged for the delivery service. The platform aims to streamline parcel management and improve convenience within the university.
 
-## Available Scripts
+## Tech Stack
 
-In the project directory, you can run:
+- **Frontend:** 
+  - **React**: A JavaScript library for building user interfaces.
+  - **Materialize CSS**: A modern responsive front-end framework based on Material Design principles.
 
-### `npm start`
+- **Backend:**
+  - **Node.js**: A JavaScript runtime built on Chrome's V8 engine.
+  - **Express.js**: A web application framework for Node.js.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Database:**
+  - **MongoDB**: A NoSQL database for storing data in flexible, JSON-like documents.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Authentication & Storage:**
+  - **Firebase**: A platform developed by Google for creating mobile and web applications, including authentication and storage functionalities.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **User Authentication:** Secure sign-in and sign-up process using Firebase Authentication.
+- **Parcel Management:** Users can view and manage their parcels with detailed information such as sender, recipient, parcel name, delivery company, and fare.
+- **Delivery Tracking:** Real-time tracking of parcel deliveries with status updates.
+- **Responsive Design:** The frontend is built with React and styled using Materialize CSS to ensure a modern and responsive user experience.
 
-### `npm run build`
+## Deployment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Frontend:** Deployed on Netlify. You can access the live application at [LPU Express](https://lpu-express.netlify.app/).
+- **Backend:** Deployed on Render.com. For details on accessing the backend or API endpoints, refer to the backend deployment settings or contact the repository owner.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Contributions are welcome! Please open an issue or submit a pull request if you have suggestions or improvements.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contact
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+For any questions or assistance, please contact sanchitbajaj2003@gmail.com.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Enjoy using LPU Express!
+![Screenshot (219)](https://github.com/user-attachments/assets/78ca8107-e5f7-4807-9415-9f0d919a1683)
+![Screenshot (218)](https://github.com/user-attachments/assets/80bc09ac-7191-48be-a982-eb1c493b11ca)
+![Screenshot (221)](https://github.com/user-attachments/assets/c9c1bbdc-5ae4-405e-b062-68f969226795)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
