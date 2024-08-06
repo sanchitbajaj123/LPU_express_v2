@@ -60,7 +60,7 @@ function DeliveryService() {
               <p><strong>Phone Number:</strong> {customer.phonenumber}</p>
               <p><strong>Parcel Name:</strong> {customer.parcelname}</p>
               <p><strong>Delivery Company:</strong> {customer.deliverycompany}</p>
-              <p><strong>Fare:</strong> ${customer.fare}</p>
+              <p><strong>Fare:</strong> {customer.fare}</p>
               <p><strong>Location:</strong> {customer.location}</p>
               <button onClick={() => parcel(customer.registrationnumber)}>accept</button>
             </div>
