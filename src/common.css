@@ -89,14 +89,15 @@
 
 .dc {
   width: 40%;
-  display: flex;
+ display: flex;
 }
 
-.dcm, .dcc {
-  flex: 1; /* Makes both items take equal space */
-  width: 100%;
-  object-fit: cover;
+
+.dcm{
+  height: 270px;
 }
+
+
 .dc button{
   text-align: center;
   text-decoration: none;
@@ -142,9 +143,13 @@
       }
       .dc{
         width: 90%;
+        flex-direction: column;
+      }
+      .dc button{
+        width: 100%;
       }
       .dcm{
-        width: 50%;
+        width: 100%;
         height: 100%;
       }
     }
