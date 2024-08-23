@@ -2,7 +2,7 @@ import axios from "axios"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const url="https://lpu-express-backend.onrender.com"
+const url="https://lpu-express-backend.vercel.app"
 
 async function signup(data){
     try{
