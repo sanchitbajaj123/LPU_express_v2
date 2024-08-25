@@ -116,9 +116,8 @@ async function deliverylist(){
     }
     catch(error){
         console.log(error.response);
-        alert("pls first request a parcel delivery "+error);
-        
-
+        alert("pls first request a parcel delivery ");
+        window.location.href="/customer";
     }
  }
 

@@ -3,7 +3,7 @@ import logo from './assets/logo.png';
 import { ToastContainer, toast } from 'react-toastify';
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import { storage } from './firebase'; 
-import {signup} from "./api";
+import { signup } from "./api";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
@@ -13,6 +13,7 @@ function Signup() {
     const [phonenumber, setPhonenumber] = useState('');
     const [password, setPassword] = useState('');
     const [idcardimg, setIdCardPicture] = useState(null);
+    const [loading, setLoading] = useState(false); // Loading state
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -21,20 +22,15 @@ function Signup() {
             reader.onloadend = () => {
                 const img = new Image();
                 img.onload = () => {
-                    // Define the desired width and height
                     const targetWidth = 277 * 300 / 25.4; // Convert mm to pixels for 300 dpi
                     const targetHeight = 207 * 300 / 25.4; // Convert mm to pixels for 300 dpi
     
-                    // Create a canvas to resize the image
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
                     canvas.width = targetWidth;
                     canvas.height = targetHeight;
     
-                    // Draw the image onto the canvas
                     ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
-    
-                    // Get the resized image as a data URL
                     const resizedImage = canvas.toDataURL('image/png');
                     setIdCardPicture(resizedImage); // This will be a data URL
                 };
@@ -43,7 +39,6 @@ function Signup() {
             reader.readAsDataURL(file);
         }
     };
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -52,7 +47,10 @@ function Signup() {
             toast.error('Please upload an ID card image.');
             return;
         }
-        toast.info(' processing your request...');
+
+        setLoading(true); // Disable button
+
+        toast.info('Processing your request...');
         try {
             const storageRef = ref(storage, `idcard_images/${Date.now()}.png`);
             const uploadResult = await uploadString(storageRef, idcardimg, 'data_url');
@@ -66,17 +64,18 @@ function Signup() {
                 idcardimg: downloadURL,
             };
 
-           
             const response = await signup(data);
-            console.log(response)
             console.log('Signup success:', response);
+
             if (response) {
-                alert('Acount created successfully!');
+                alert('Account created successfully!');
                 navigate('/');
             }
         } catch (error) {
             console.error('Error uploading file:', error);
-            toast.error(error)
+            toast.error('Error during signup. Please try again.');
+        } finally {
+            setLoading(false); // Re-enable button
         }
     };
 
@@ -89,14 +88,7 @@ function Signup() {
                             <h4 className="head" style={{ color: '#ff8a00' }}>
                                 <img src={logo} height="150px" width="300px" alt="Logo" />
                             </h4>
-                            <form id="form" onSubmit={handleSubmit} onKeyDown={
-                                (e) => {
-                                    if (e.key === 'Enter') {
-                                        e.preventDefault();
-                                        handleSubmit(e);
-                                    }
-                                }
-                            }>
+                            <form id="form" onSubmit={handleSubmit}>
                                 <div className="input-field">
                                     <input id="name" type="text" className="validate" required
                                         value={name}
@@ -137,8 +129,13 @@ function Signup() {
                                     </div>
                                 </div>
                                 <div className="center-align">
-                                    <button className="btn waves-effect waves-light btn-large" type="submit" name="action">
-                                        Sign Up   
+                                    <button 
+                                        className="btn waves-effect waves-light btn-large" 
+                                        type="submit" 
+                                        name="action"
+                                        disabled={loading} // Disable button when loading
+                                    >
+                                        {loading ? 'Processing...' : 'Sign Up'}   
                                         <i className="material-icons right">send</i>
                                     </button>
                                 </div>
