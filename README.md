@@ -37,7 +37,7 @@ Contributions are welcome! Please open an issue or submit a pull request if you 
 
 ## Contact
 
-For any questions or assistance, please contact sanchitbajaj2003@gmail.com.
+For any questions or assistance, please contact arpitatiwari8756@gmail.com.
 
 ---
 
