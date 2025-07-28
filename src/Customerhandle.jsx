@@ -11,7 +11,6 @@ function Checkstatus() {
     const fetchDeliveryDetails = async () => {
       try {
         const response = await checkdelivery();
-        console.log('API:', response.data);
         if (response) {
           console.log(response)
           setDeliveryDetails({

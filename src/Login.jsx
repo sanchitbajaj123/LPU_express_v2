@@ -17,7 +17,6 @@ const LoginForm = () => {
       registrationnumber,
       password
     }
-    console.log(data);
     const response= await login(data)
     if(response){
       console.log(response)
@@ -27,7 +26,6 @@ const LoginForm = () => {
       });
     }}
     catch(error){
-      console.log(error);
       alert(error.message);
     }
 

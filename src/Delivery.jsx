@@ -14,13 +14,11 @@ function DeliveryService() {
         userregistrationumber,customerregistrationnumber
     }
     const res=await parcels(data);
-    console.log(res);
   }
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
         const cus = await cuslist();
-        console.log(cus);
         setCustomers(cus);
       } catch (error) {
         console.error("Error fetching customer data:", error);

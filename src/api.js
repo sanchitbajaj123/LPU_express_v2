@@ -6,9 +6,7 @@ const url="https://lpu-express-backend.vercel.app"
 
 async function signup(data){
     try{
-        console.log(data);
         const response=await axios.post(url+"/signup",data);
-        console.log('API data:', response.data);
         toast.success('Signup successful! You can now login.')
         return response.data;
     }catch(error){
@@ -24,11 +22,9 @@ async function signup(data){
 async function login(data){
     try{
         const response=await axios.post(url+"/login",data);
-        console.log('API data:', response.data);
         localStorage.setItem('userData', JSON.stringify(response.data));
         return response.data;
     }catch(error){
-        console.log(error.response);
         if(error.response.status===401){
             toast.error('Incorrect password')
         } 
@@ -39,9 +35,7 @@ async function login(data){
 }
 async function customerRegister(data){
     try{
-        console.log(data);
         const response=await axios.post(url+"/customeradd",data);
-        console.log('API data:', response.data);
         toast.success('Parcel added successfully')
         return response.data;
     }
@@ -52,23 +46,19 @@ async function customerRegister(data){
 async function cuslist(){
     try{
         const response=await axios.get(url+"/customerlist");
-        console.log('API data:', response.data);
         return response.data;
     }
     catch(error){
-        console.log(error.response);
         alert(error);
     }
 }
 async function parcels(data){
 try{
 const response = await axios.post(url+"/parcelservice",data);
-    console.log('API data:', response.data);
     toast.success('Parcel added to delivery list!')
     return response.data;
 }
 catch(error){
-    console.log(error.response);
     alert(error);
 }
 }
@@ -78,13 +68,10 @@ async function deliverylist(){
         const user = JSON.parse(retrievedObject);
         const userregistrationumber=user.registrationnumber;
         const data={registrationnumber:userregistrationumber}
-        console.log(data);
         const response=await axios.post(url+"/deliverylist",data);
-        console.log('API data:', response.data);
         return response.data;
     }
     catch(error){
-        console.log(error.response);
         alert(error);
     }
 }
@@ -93,7 +80,6 @@ async function deliverylist(){
         registrationnumber:regno
     }
     const response = await axios.post(url+'/cusdel',data);
-    console.log('API data:', response.data);
     toast.success('Thanks for using our platform')
  }
  async function checkdelivery(){
@@ -115,7 +101,6 @@ async function deliverylist(){
         }
     }
     catch(error){
-        console.log(error.response);
         alert("pls first request a parcel delivery ");
         window.location.href="/customer";
     }

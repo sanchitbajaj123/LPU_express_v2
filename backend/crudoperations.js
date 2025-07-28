@@ -21,10 +21,7 @@ async function Signup(req, res){
 }
 async function Login(req, res) {
     try {
-        console.log(1);
         const { registrationnumber, password } = req.body;
-        console.log(registrationnumber);
-        console.log(password);
         const user = await User.findOne({ registrationnumber: registrationnumber});
         const isMatch = await checkPassword(password, user.password);
 
@@ -44,7 +41,6 @@ async function Login(req, res) {
 async function Customeradd(req, res) {
     try{
         const{registrationnumber,parcelname,deliverycompany,fare,location}=req.body;
-        console.log(req.body);
         const check=await Customer.findOne({registrationnumber:registrationnumber})
         if(check){
             res.status(401).json({ message: 'Only one parcel at a time can be treated'});
@@ -129,7 +125,6 @@ async function Cusdel(req, res) {
         {}, 
         { $pull: { customerselected: registrationnumber } } // Remove registrationnumber from selectedlist array
     );
-    console.log("cus",updateResult);
         res.status(200).json({ message:"delete customer"})
 }
     catch(err) {

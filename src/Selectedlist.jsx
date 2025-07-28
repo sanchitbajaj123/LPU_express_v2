@@ -9,7 +9,6 @@ function DeliveryServicelist() {
 
 const handleSubmit=async(regno)=>{
         const response=await cusdel(regno)
-        console.log(response);
 }
 
   useEffect(() => {
@@ -20,7 +19,6 @@ const handleSubmit=async(regno)=>{
         
         const customerArray = Object.values(data);
         
-        console.log(customerArray);
         setCustomers(customerArray);
         setLoading(false);
       } catch (error) {

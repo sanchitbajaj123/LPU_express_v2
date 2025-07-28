@@ -105,7 +105,6 @@ const customerSchema = new Schema({
 
 const connectdb=async()=>{
     await mongoose.connect(mongoUrl)
-    console.log('MongoDB Connected...');
 }
 connectdb();
 

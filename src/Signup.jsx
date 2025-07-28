@@ -32,7 +32,6 @@ function Signup() {
     
                     ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
                     const resizedImage = canvas.toDataURL('image/png');
-                    console.log(resizedImage);
                     setIdCardPicture(resizedImage); // This will be a data URL
                 };
                 img.src = reader.result;
@@ -74,8 +73,6 @@ function Signup() {
             };
 
             const response = await signup(data);
-            console.log('Signup success:', response);
-
             if (response) {
                 alert('Account created successfully!');
                 navigate('/');

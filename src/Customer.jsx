@@ -22,9 +22,7 @@ function Customer() {
       fare,
       location
     };
-    console.log(data);
     const res=await customerRegister(data)
-    console.log(res);
   }
 
   return (
