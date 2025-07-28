@@ -32,17 +32,26 @@ function Signup() {
     
                     ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
                     const resizedImage = canvas.toDataURL('image/png');
+                    console.log(resizedImage);
                     setIdCardPicture(resizedImage); // This will be a data URL
                 };
                 img.src = reader.result;
             };
             reader.readAsDataURL(file);
+            console.log(reader)
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        if(!name.trim()){
+            toast.error('Please enter name.')
+            return;
+        }
+        if(phonenumber.length!==10){
+            toast.error('Please enter correct phone numebr.')
+            return;
+        }
         if (!idcardimg) {
             toast.error('Please upload an ID card image.');
             return;

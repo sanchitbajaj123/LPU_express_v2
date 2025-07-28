@@ -98,8 +98,7 @@ const customerSchema = new Schema({
     deliverypersonregistration:{
         type:String,
         default:null,
-    }
-
+    },
     },{timestamps:true})
     const Customer = model("Customers", customerSchema);
 
