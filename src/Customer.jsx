@@ -22,7 +22,7 @@ function Customer() {
       fare,
       location
     };
-    const res=await customerRegister(data)
+    await customerRegister(data)
   }
 
   return (

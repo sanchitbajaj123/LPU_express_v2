@@ -13,7 +13,7 @@ function DeliveryService() {
     const data={
         userregistrationumber,customerregistrationnumber
     }
-    const res=await parcels(data);
+    await parcels(data);
   }
   useEffect(() => {
     const fetchCustomers = async () => {

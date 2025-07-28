@@ -8,7 +8,7 @@ function DeliveryServicelist() {
   const [error, setError] = useState(null);
 
 const handleSubmit=async(regno)=>{
-        const response=await cusdel(regno)
+        await cusdel(regno)
 }
 
   useEffect(() => {

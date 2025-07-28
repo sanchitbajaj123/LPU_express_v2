@@ -79,7 +79,7 @@ async function deliverylist(){
     const data={
         registrationnumber:regno
     }
-    const response = await axios.post(url+'/cusdel',data);
+     await axios.post(url+'/cusdel',data);
     toast.success('Thanks for using our platform')
  }
  async function checkdelivery(){
